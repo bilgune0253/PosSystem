@@ -40,16 +40,60 @@ namespace MainDisplay
         }
         private void SetupDataGridView()
         {
-            // DataTable үүсгэх сагсны өгөгдлөөр
+            // DataTable үүсгэх сагсны өгөгдлөөр - таны design-ийн column нэрүүдтэй яг тохируулна
             _cartDataTable = new DataTable();
             _cartDataTable.Columns.Add("ProductId", typeof(int));
-            _cartDataTable.Columns.Add("Name", typeof(string));
-            _cartDataTable.Columns.Add("Quantity", typeof(int));
-            _cartDataTable.Columns.Add("UnitPrice", typeof(decimal));
-            _cartDataTable.Columns.Add("Total", typeof(decimal));
+            _cartDataTable.Columns.Add("Name", typeof(string));           // Header: Name
+            _cartDataTable.Columns.Add("Quantity", typeof(int));          // Header: Quantity  
+            _cartDataTable.Columns.Add("UnitPrice", typeof(decimal));     // Header: UnitPrice
+            _cartDataTable.Columns.Add("Total", typeof(decimal));         // Header: Total
 
             // DataGridView тохируулах
-            
+            if (dataGridView1 != null)
+            {
+                dataGridView1.DataSource = _cartDataTable;
+
+                // ProductId багана нуух
+                if (dataGridView1.Columns["ProductId"] != null)
+                    dataGridView1.Columns["ProductId"].Visible = false;
+
+                // Баганы тохиргоо - таны design дээрх нэрүүдтэй яг тохирно
+                if (dataGridView1.Columns["Name"] != null)
+                {
+                    dataGridView1.Columns["Name"].Width = 350;
+                    dataGridView1.Columns["Name"].ReadOnly = true;
+                }
+
+                if (dataGridView1.Columns["Quantity"] != null)
+                {
+                    dataGridView1.Columns["Quantity"].Width = 250;
+                    dataGridView1.Columns["Quantity"].ReadOnly = false; // Edit хийж болно
+                }
+
+                if (dataGridView1.Columns["UnitPrice"] != null)
+                {
+                    dataGridView1.Columns["UnitPrice"].Width = 250;
+                    dataGridView1.Columns["UnitPrice"].DefaultCellStyle.Format = "N0"; // Тоо форматлах
+                    dataGridView1.Columns["UnitPrice"].ReadOnly = true;
+                }
+
+                if (dataGridView1.Columns["Total"] != null)
+                {
+                    dataGridView1.Columns["Total"].Width = 250;
+                    dataGridView1.Columns["Total"].DefaultCellStyle.Format = "N0"; // Тоо форматлах
+                    dataGridView1.Columns["Total"].ReadOnly = true;
+                }
+
+                // DataGridView-ийн ерөнхий тохиргоо
+                dataGridView1.AllowUserToAddRows = false;
+                dataGridView1.AllowUserToDeleteRows = false;
+                dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+                dataGridView1.MultiSelect = false;
+
+                // Event handler нэмэх
+                dataGridView1.CellValueChanged += DataGridView1_CellValueChanged;
+                dataGridView1.KeyDown += DataGridView1_KeyDown;
+            }
         }
         public void AddProductToCartByName(string productName)
         {
@@ -121,6 +165,8 @@ namespace MainDisplay
 
             // Нийт дүнг form дээр харуулах (Label эсвэл TextBox байх ёстой)
             // Жишээ: lblTotalAmount.Text = $"Нийт: ₮{totalAmount:N0}";
+            TotalAmountlabel.Text = $"Нийт: ₮{totalAmount:N0}";
+
         }
         private void DataGridView1_CellValueChanged(object sender, DataGridViewCellEventArgs e)
         {
@@ -155,6 +201,7 @@ namespace MainDisplay
                 }
             }
         }
+
         private void DataGridView1_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Delete && dataGridView1.SelectedRows.Count > 0)
@@ -205,7 +252,28 @@ namespace MainDisplay
 
         private void btnRemoveItem_Click(object sender, EventArgs e)
         {
-
+            if (dataGridView1.SelectedRows.Count > 0)
+            {
+                try
+                {
+                    foreach (DataGridViewRow row in dataGridView1.SelectedRows)
+                    {
+                        if (!row.IsNewRow)
+                        {
+                            _cartDataTable.Rows.RemoveAt(row.Index);
+                        }
+                    }
+                    UpdateTotalAmount();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Мөр устгахад алдаа: {ex.Message}", "Алдаа", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+            else
+            {
+                MessageBox.Show("Устгах мөрийг сонгоно уу!", "Мэдээлэл", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -221,6 +289,11 @@ namespace MainDisplay
         private void button3_Click(object sender, EventArgs e)
         {
             AddProductToCartByName("Choco_mousse");
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

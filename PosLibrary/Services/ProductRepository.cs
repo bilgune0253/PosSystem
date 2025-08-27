@@ -20,10 +20,11 @@ namespace PosLibrary.Data
             using (var connection = _database.GetConnection())
             {
                 connection.Open();
+                // Таны database-д байгаа багануудаар: Id, Barcode, Name, Price, CategoryId, Quantity
                 string sql = @"SELECT p.Id, p.Barcode, p.Name, p.Price, p.CategoryId, 
-                                      p.Quantity, c.Name AS CategoryName
-                               FROM Products p
-                               LEFT JOIN Categories c ON p.CategoryId = c.Id";
+                              p.Quantity, c.Name AS CategoryName
+                              FROM Products p
+                              LEFT JOIN Categories c ON p.CategoryId = c.Id";
 
                 using (var command = new SQLiteCommand(sql, connection))
                 using (var reader = command.ExecuteReader())
@@ -38,6 +39,7 @@ namespace PosLibrary.Data
                             Price = Convert.ToDecimal(reader["Price"]),
                             CategoryId = Convert.ToInt32(reader["CategoryId"]),
                             Quantity = Convert.ToInt32(reader["Quantity"]),
+                            IsActive = true, // Default утга (database-д байхгүй тул)
                             CategoryName = reader["CategoryName"]?.ToString() ?? ""
                         };
                         products.Add(product);
@@ -48,20 +50,20 @@ namespace PosLibrary.Data
         }
 
         // Нэрээр бараа хайх
-        public Product? GetProductByName(string productname)
+        public Product? GetProductByName(string name)
         {
             using (var connection = _database.GetConnection())
             {
                 connection.Open();
                 string sql = @"SELECT p.Id, p.Barcode, p.Name, p.Price, p.CategoryId, 
-                                      p.Quantity, c.Name AS CategoryName
-                               FROM Products p
-                               LEFT JOIN Categories c ON p.CategoryId = c.Id
-                               WHERE p.Name = @name";
+                              p.Quantity, c.Name AS CategoryName
+                              FROM Products p
+                              LEFT JOIN Categories c ON p.CategoryId = c.Id
+                              WHERE p.Name = @name";
 
                 using (var command = new SQLiteCommand(sql, connection))
                 {
-                    command.Parameters.AddWithValue("@name", productname);
+                    command.Parameters.AddWithValue("@name", name);
                     using (var reader = command.ExecuteReader())
                     {
                         if (reader.Read())
@@ -74,6 +76,7 @@ namespace PosLibrary.Data
                                 Price = Convert.ToDecimal(reader["Price"]),
                                 CategoryId = Convert.ToInt32(reader["CategoryId"]),
                                 Quantity = Convert.ToInt32(reader["Quantity"]),
+                                IsActive = true, // Default утга
                                 CategoryName = reader["CategoryName"]?.ToString() ?? ""
                             };
                         }
@@ -90,10 +93,10 @@ namespace PosLibrary.Data
             {
                 connection.Open();
                 string sql = @"SELECT p.Id, p.Barcode, p.Name, p.Price, p.CategoryId, 
-                                      p.Quantity, c.Name AS CategoryName
-                               FROM Products p
-                               LEFT JOIN Categories c ON p.CategoryId = c.Id
-                               WHERE p.Id = @id";
+                              p.Quantity, c.Name AS CategoryName
+                              FROM Products p
+                              LEFT JOIN Categories c ON p.CategoryId = c.Id
+                              WHERE p.Id = @id";
 
                 using (var command = new SQLiteCommand(sql, connection))
                 {
@@ -110,6 +113,7 @@ namespace PosLibrary.Data
                                 Price = Convert.ToDecimal(reader["Price"]),
                                 CategoryId = Convert.ToInt32(reader["CategoryId"]),
                                 Quantity = Convert.ToInt32(reader["Quantity"]),
+                                IsActive = true, // Default утга
                                 CategoryName = reader["CategoryName"]?.ToString() ?? ""
                             };
                         }
@@ -155,10 +159,10 @@ namespace PosLibrary.Data
             {
                 connection.Open();
                 string sql = @"SELECT p.Id, p.Barcode, p.Name, p.Price, p.CategoryId, 
-                                      p.Quantity, c.Name AS CategoryName
-                               FROM Products p
-                               LEFT JOIN Categories c ON p.CategoryId = c.Id
-                               WHERE p.CategoryId = @categoryId";
+                              p.Quantity, c.Name AS CategoryName
+                              FROM Products p
+                              LEFT JOIN Categories c ON p.CategoryId = c.Id
+                              WHERE p.CategoryId = @categoryId";
 
                 using (var command = new SQLiteCommand(sql, connection))
                 {
@@ -175,6 +179,7 @@ namespace PosLibrary.Data
                                 Price = Convert.ToDecimal(reader["Price"]),
                                 CategoryId = Convert.ToInt32(reader["CategoryId"]),
                                 Quantity = Convert.ToInt32(reader["Quantity"]),
+                                IsActive = true, // Default утга
                                 CategoryName = reader["CategoryName"]?.ToString() ?? ""
                             };
                             products.Add(product);
@@ -183,6 +188,43 @@ namespace PosLibrary.Data
                 }
             }
             return products;
+        }
+
+        // Barcod-оор бараа хайх (нэмэлт функц)
+        public Product? GetProductByBarcode(string barcode)
+        {
+            using (var connection = _database.GetConnection())
+            {
+                connection.Open();
+                string sql = @"SELECT p.Id, p.Barcode, p.Name, p.Price, p.CategoryId, 
+                              p.Quantity, c.Name AS CategoryName
+                              FROM Products p
+                              LEFT JOIN Categories c ON p.CategoryId = c.Id
+                              WHERE p.Barcode = @barcode";
+
+                using (var command = new SQLiteCommand(sql, connection))
+                {
+                    command.Parameters.AddWithValue("@barcode", barcode);
+                    using (var reader = command.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            return new Product
+                            {
+                                Id = Convert.ToInt32(reader["Id"]),
+                                Barcode = reader["Barcode"]?.ToString(),
+                                Name = reader["Name"].ToString() ?? "",
+                                Price = Convert.ToDecimal(reader["Price"]),
+                                CategoryId = Convert.ToInt32(reader["CategoryId"]),
+                                Quantity = Convert.ToInt32(reader["Quantity"]),
+                                IsActive = true, // Default утга
+                                CategoryName = reader["CategoryName"]?.ToString() ?? ""
+                            };
+                        }
+                    }
+                }
+            }
+            return null;
         }
     }
 }

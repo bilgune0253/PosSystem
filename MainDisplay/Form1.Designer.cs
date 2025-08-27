@@ -31,10 +31,6 @@
             components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             dataGridView1 = new DataGridView();
-            ProductName = new DataGridViewTextBoxColumn();
-            Quantity = new DataGridViewTextBoxColumn();
-            UnitPrice = new DataGridViewTextBoxColumn();
-            Total = new DataGridViewTextBoxColumn();
             sqliteCommand1 = new Microsoft.Data.Sqlite.SqliteCommand();
             textBox1 = new TextBox();
             button1 = new Button();
@@ -68,7 +64,6 @@
             button29 = new Button();
             button30 = new Button();
             pictureBox1 = new PictureBox();
-            label1 = new Label();
             TotalAmountlabel = new Label();
             btnPay = new Button();
             contextMenuStrip1 = new ContextMenuStrip(components);
@@ -82,42 +77,13 @@
             // 
             dataGridView1.BackgroundColor = SystemColors.Control;
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Columns.AddRange(new DataGridViewColumn[] { ProductName, Quantity, UnitPrice, Total });
-            dataGridView1.Location = new Point(10, 124);
-            dataGridView1.Margin = new Padding(5, 6, 5, 6);
+            dataGridView1.Location = new Point(14, 169);
+            dataGridView1.Margin = new Padding(7, 8, 7, 8);
             dataGridView1.Name = "dataGridView1";
             dataGridView1.RowHeadersWidth = 72;
-            dataGridView1.Size = new Size(758, 876);
+            dataGridView1.Size = new Size(1138, 1197);
             dataGridView1.TabIndex = 1;
             dataGridView1.CellContentClick += dataGridView1_CellContentClick;
-            // 
-            // ProductName
-            // 
-            ProductName.HeaderText = "Name";
-            ProductName.MinimumWidth = 9;
-            ProductName.Name = "ProductName";
-            ProductName.Width = 175;
-            // 
-            // Quantity
-            // 
-            Quantity.HeaderText = "Quantity";
-            Quantity.MinimumWidth = 9;
-            Quantity.Name = "Quantity";
-            Quantity.Width = 175;
-            // 
-            // UnitPrice
-            // 
-            UnitPrice.HeaderText = "UnitPrice";
-            UnitPrice.MinimumWidth = 9;
-            UnitPrice.Name = "UnitPrice";
-            UnitPrice.Width = 175;
-            // 
-            // Total
-            // 
-            Total.HeaderText = "Total";
-            Total.MinimumWidth = 9;
-            Total.Name = "Total";
-            Total.Width = 175;
             // 
             // sqliteCommand1
             // 
@@ -128,11 +94,11 @@
             // 
             // textBox1
             // 
-            textBox1.Location = new Point(927, 124);
-            textBox1.Margin = new Padding(5, 6, 5, 6);
+            textBox1.Location = new Point(1313, 169);
+            textBox1.Margin = new Padding(7, 8, 7, 8);
             textBox1.Multiline = true;
             textBox1.Name = "textBox1";
-            textBox1.Size = new Size(424, 58);
+            textBox1.Size = new Size(599, 78);
             textBox1.TabIndex = 2;
             // 
             // button1
@@ -140,10 +106,10 @@
             button1.BackgroundImage = Properties.Resources.Croissant3;
             button1.BackgroundImageLayout = ImageLayout.Stretch;
             button1.ForeColor = Color.White;
-            button1.Location = new Point(866, 224);
-            button1.Margin = new Padding(5, 6, 5, 6);
+            button1.Location = new Point(1227, 306);
+            button1.Margin = new Padding(7, 8, 7, 8);
             button1.Name = "button1";
-            button1.Size = new Size(139, 88);
+            button1.Size = new Size(197, 120);
             button1.TabIndex = 3;
             button1.Text = "Croissant";
             button1.UseVisualStyleBackColor = true;
@@ -154,10 +120,10 @@
             button2.BackgroundImage = Properties.Resources.Eclair;
             button2.BackgroundImageLayout = ImageLayout.Stretch;
             button2.ForeColor = Color.White;
-            button2.Location = new Point(1010, 224);
-            button2.Margin = new Padding(5, 6, 5, 6);
+            button2.Location = new Point(1431, 306);
+            button2.Margin = new Padding(7, 8, 7, 8);
             button2.Name = "button2";
-            button2.Size = new Size(132, 88);
+            button2.Size = new Size(187, 120);
             button2.TabIndex = 4;
             button2.Text = "Eclair";
             button2.UseVisualStyleBackColor = true;
@@ -168,10 +134,10 @@
             button3.BackgroundImage = Properties.Resources.Mousse;
             button3.BackgroundImageLayout = ImageLayout.Stretch;
             button3.ForeColor = Color.White;
-            button3.Location = new Point(1147, 224);
-            button3.Margin = new Padding(5, 6, 5, 6);
+            button3.Location = new Point(1625, 306);
+            button3.Margin = new Padding(7, 8, 7, 8);
             button3.Name = "button3";
-            button3.Size = new Size(135, 88);
+            button3.Size = new Size(191, 120);
             button3.TabIndex = 5;
             button3.Text = "choco mousse";
             button3.UseVisualStyleBackColor = true;
@@ -182,10 +148,10 @@
             button4.BackgroundImage = Properties.Resources.Croissant3;
             button4.BackgroundImageLayout = ImageLayout.Stretch;
             button4.ForeColor = Color.White;
-            button4.Location = new Point(1289, 224);
-            button4.Margin = new Padding(5, 6, 5, 6);
+            button4.Location = new Point(1826, 306);
+            button4.Margin = new Padding(7, 8, 7, 8);
             button4.Name = "button4";
-            button4.Size = new Size(127, 88);
+            button4.Size = new Size(180, 120);
             button4.TabIndex = 6;
             button4.Text = "Wheat bread";
             button4.UseVisualStyleBackColor = true;
@@ -195,10 +161,10 @@
             button5.BackgroundImage = Properties.Resources.Eclair;
             button5.BackgroundImageLayout = ImageLayout.Stretch;
             button5.ForeColor = Color.White;
-            button5.Location = new Point(866, 324);
-            button5.Margin = new Padding(5, 6, 5, 6);
+            button5.Location = new Point(1227, 443);
+            button5.Margin = new Padding(7, 8, 7, 8);
             button5.Name = "button5";
-            button5.Size = new Size(139, 88);
+            button5.Size = new Size(197, 120);
             button5.TabIndex = 7;
             button5.Text = "white bread";
             button5.UseVisualStyleBackColor = true;
@@ -208,10 +174,10 @@
             button6.BackgroundImage = Properties.Resources.Mousse;
             button6.BackgroundImageLayout = ImageLayout.Stretch;
             button6.ForeColor = Color.White;
-            button6.Location = new Point(1010, 324);
-            button6.Margin = new Padding(5, 6, 5, 6);
+            button6.Location = new Point(1431, 443);
+            button6.Margin = new Padding(7, 8, 7, 8);
             button6.Name = "button6";
-            button6.Size = new Size(132, 88);
+            button6.Size = new Size(187, 120);
             button6.TabIndex = 8;
             button6.Text = "Cheese cake";
             button6.UseVisualStyleBackColor = true;
@@ -222,10 +188,10 @@
             button7.BackgroundImage = Properties.Resources.Eclair;
             button7.BackgroundImageLayout = ImageLayout.Stretch;
             button7.ForeColor = Color.White;
-            button7.Location = new Point(1147, 324);
-            button7.Margin = new Padding(5, 6, 5, 6);
+            button7.Location = new Point(1625, 443);
+            button7.Margin = new Padding(7, 8, 7, 8);
             button7.Name = "button7";
-            button7.Size = new Size(135, 88);
+            button7.Size = new Size(191, 120);
             button7.TabIndex = 9;
             button7.Text = "breat";
             button7.UseVisualStyleBackColor = true;
@@ -235,10 +201,10 @@
             button8.BackgroundImage = Properties.Resources.Mousse;
             button8.BackgroundImageLayout = ImageLayout.Stretch;
             button8.ForeColor = Color.White;
-            button8.Location = new Point(1289, 324);
-            button8.Margin = new Padding(5, 6, 5, 6);
+            button8.Location = new Point(1826, 443);
+            button8.Margin = new Padding(7, 8, 7, 8);
             button8.Name = "button8";
-            button8.Size = new Size(127, 88);
+            button8.Size = new Size(180, 120);
             button8.TabIndex = 10;
             button8.Text = "Red velvet";
             button8.UseVisualStyleBackColor = true;
@@ -248,10 +214,10 @@
             button9.BackgroundImage = Properties.Resources.Ameicano;
             button9.BackgroundImageLayout = ImageLayout.Stretch;
             button9.ForeColor = Color.White;
-            button9.Location = new Point(866, 424);
-            button9.Margin = new Padding(5, 6, 5, 6);
+            button9.Location = new Point(1227, 579);
+            button9.Margin = new Padding(7, 8, 7, 8);
             button9.Name = "button9";
-            button9.Size = new Size(139, 88);
+            button9.Size = new Size(197, 120);
             button9.TabIndex = 11;
             button9.Text = "Americano";
             button9.UseVisualStyleBackColor = true;
@@ -261,10 +227,10 @@
             button10.BackgroundImage = Properties.Resources.Ameicano;
             button10.BackgroundImageLayout = ImageLayout.Stretch;
             button10.ForeColor = Color.White;
-            button10.Location = new Point(1010, 424);
-            button10.Margin = new Padding(5, 6, 5, 6);
+            button10.Location = new Point(1431, 579);
+            button10.Margin = new Padding(7, 8, 7, 8);
             button10.Name = "button10";
-            button10.Size = new Size(132, 88);
+            button10.Size = new Size(187, 120);
             button10.TabIndex = 12;
             button10.Text = "Espresso";
             button10.UseVisualStyleBackColor = true;
@@ -274,10 +240,10 @@
             button11.BackgroundImage = Properties.Resources.Ameicano;
             button11.BackgroundImageLayout = ImageLayout.Stretch;
             button11.ForeColor = Color.White;
-            button11.Location = new Point(1147, 424);
-            button11.Margin = new Padding(5, 6, 5, 6);
+            button11.Location = new Point(1625, 579);
+            button11.Margin = new Padding(7, 8, 7, 8);
             button11.Name = "button11";
-            button11.Size = new Size(135, 88);
+            button11.Size = new Size(191, 120);
             button11.TabIndex = 13;
             button11.Text = "Capuccino";
             button11.UseVisualStyleBackColor = true;
@@ -287,10 +253,10 @@
             button12.BackgroundImage = Properties.Resources.Ameicano;
             button12.BackgroundImageLayout = ImageLayout.Stretch;
             button12.ForeColor = Color.White;
-            button12.Location = new Point(1289, 424);
-            button12.Margin = new Padding(5, 6, 5, 6);
+            button12.Location = new Point(1826, 579);
+            button12.Margin = new Padding(7, 8, 7, 8);
             button12.Name = "button12";
-            button12.Size = new Size(127, 88);
+            button12.Size = new Size(180, 120);
             button12.TabIndex = 14;
             button12.Text = "matcha";
             button12.UseVisualStyleBackColor = true;
@@ -300,10 +266,10 @@
             button13.BackgroundImage = Properties.Resources.Ameicano;
             button13.BackgroundImageLayout = ImageLayout.Stretch;
             button13.ForeColor = Color.White;
-            button13.Location = new Point(866, 524);
-            button13.Margin = new Padding(5, 6, 5, 6);
+            button13.Location = new Point(1227, 716);
+            button13.Margin = new Padding(7, 8, 7, 8);
             button13.Name = "button13";
-            button13.Size = new Size(139, 88);
+            button13.Size = new Size(197, 120);
             button13.TabIndex = 15;
             button13.Text = "Green tea";
             button13.UseVisualStyleBackColor = true;
@@ -313,10 +279,10 @@
             button14.BackgroundImage = Properties.Resources.Ameicano;
             button14.BackgroundImageLayout = ImageLayout.Stretch;
             button14.ForeColor = Color.White;
-            button14.Location = new Point(1010, 524);
-            button14.Margin = new Padding(5, 6, 5, 6);
+            button14.Location = new Point(1431, 716);
+            button14.Margin = new Padding(7, 8, 7, 8);
             button14.Name = "button14";
-            button14.Size = new Size(132, 88);
+            button14.Size = new Size(187, 120);
             button14.TabIndex = 16;
             button14.Text = "Sparkling water";
             button14.UseVisualStyleBackColor = true;
@@ -326,10 +292,10 @@
             button15.BackgroundImage = Properties.Resources.Ameicano;
             button15.BackgroundImageLayout = ImageLayout.Stretch;
             button15.ForeColor = Color.White;
-            button15.Location = new Point(1147, 524);
-            button15.Margin = new Padding(5, 6, 5, 6);
+            button15.Location = new Point(1625, 716);
+            button15.Margin = new Padding(7, 8, 7, 8);
             button15.Name = "button15";
-            button15.Size = new Size(135, 88);
+            button15.Size = new Size(191, 120);
             button15.TabIndex = 17;
             button15.Text = "Soda";
             button15.UseVisualStyleBackColor = true;
@@ -339,10 +305,10 @@
             button16.BackgroundImage = Properties.Resources.Ameicano;
             button16.BackgroundImageLayout = ImageLayout.Stretch;
             button16.ForeColor = Color.White;
-            button16.Location = new Point(1289, 524);
-            button16.Margin = new Padding(5, 6, 5, 6);
+            button16.Location = new Point(1826, 716);
+            button16.Margin = new Padding(7, 8, 7, 8);
             button16.Name = "button16";
-            button16.Size = new Size(127, 88);
+            button16.Size = new Size(180, 120);
             button16.TabIndex = 18;
             button16.Text = "IceCream";
             button16.UseVisualStyleBackColor = true;
@@ -350,10 +316,10 @@
             // button17
             // 
             button17.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
-            button17.Location = new Point(864, 124);
-            button17.Margin = new Padding(5, 6, 5, 6);
+            button17.Location = new Point(1224, 169);
+            button17.Margin = new Padding(7, 8, 7, 8);
             button17.Name = "button17";
-            button17.Size = new Size(53, 64);
+            button17.Size = new Size(75, 87);
             button17.TabIndex = 19;
             button17.Text = "<";
             button17.UseVisualStyleBackColor = true;
@@ -361,10 +327,10 @@
             // button18
             // 
             button18.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
-            button18.Location = new Point(1363, 124);
-            button18.Margin = new Padding(5, 6, 5, 6);
+            button18.Location = new Point(1931, 169);
+            button18.Margin = new Padding(7, 8, 7, 8);
             button18.Name = "button18";
-            button18.Size = new Size(53, 64);
+            button18.Size = new Size(75, 87);
             button18.TabIndex = 20;
             button18.Text = ">";
             button18.UseVisualStyleBackColor = true;
@@ -373,10 +339,10 @@
             // 
             button19.BackColor = Color.FromArgb(37, 50, 167);
             button19.ForeColor = Color.White;
-            button19.Location = new Point(862, 716);
-            button19.Margin = new Padding(5, 6, 5, 6);
+            button19.Location = new Point(1221, 979);
+            button19.Margin = new Padding(7, 8, 7, 8);
             button19.Name = "button19";
-            button19.Size = new Size(141, 98);
+            button19.Size = new Size(200, 134);
             button19.TabIndex = 21;
             button19.Text = "button19";
             button19.UseVisualStyleBackColor = false;
@@ -385,10 +351,10 @@
             // 
             button20.BackColor = Color.FromArgb(37, 50, 167);
             button20.ForeColor = Color.White;
-            button20.Location = new Point(1006, 716);
-            button20.Margin = new Padding(5, 6, 5, 6);
+            button20.Location = new Point(1425, 979);
+            button20.Margin = new Padding(7, 8, 7, 8);
             button20.Name = "button20";
-            button20.Size = new Size(141, 98);
+            button20.Size = new Size(200, 134);
             button20.TabIndex = 22;
             button20.Text = "button20";
             button20.UseVisualStyleBackColor = false;
@@ -397,10 +363,10 @@
             // 
             button21.BackColor = Color.FromArgb(37, 50, 167);
             button21.ForeColor = Color.White;
-            button21.Location = new Point(1143, 716);
-            button21.Margin = new Padding(5, 6, 5, 6);
+            button21.Location = new Point(1619, 979);
+            button21.Margin = new Padding(7, 8, 7, 8);
             button21.Name = "button21";
-            button21.Size = new Size(141, 98);
+            button21.Size = new Size(200, 134);
             button21.TabIndex = 23;
             button21.Text = "button21";
             button21.UseVisualStyleBackColor = false;
@@ -409,10 +375,10 @@
             // 
             button22.BackColor = Color.FromArgb(37, 50, 167);
             button22.ForeColor = Color.White;
-            button22.Location = new Point(1286, 716);
-            button22.Margin = new Padding(5, 6, 5, 6);
+            button22.Location = new Point(1822, 979);
+            button22.Margin = new Padding(7, 8, 7, 8);
             button22.Name = "button22";
-            button22.Size = new Size(141, 98);
+            button22.Size = new Size(200, 134);
             button22.TabIndex = 24;
             button22.Text = "button22";
             button22.UseVisualStyleBackColor = false;
@@ -421,10 +387,10 @@
             // 
             button23.BackColor = Color.FromArgb(37, 50, 167);
             button23.ForeColor = Color.White;
-            button23.Location = new Point(1286, 812);
-            button23.Margin = new Padding(5, 6, 5, 6);
+            button23.Location = new Point(1822, 1110);
+            button23.Margin = new Padding(7, 8, 7, 8);
             button23.Name = "button23";
-            button23.Size = new Size(141, 98);
+            button23.Size = new Size(200, 134);
             button23.TabIndex = 28;
             button23.Text = "button23";
             button23.UseVisualStyleBackColor = false;
@@ -433,10 +399,10 @@
             // 
             button24.BackColor = Color.FromArgb(37, 50, 167);
             button24.ForeColor = Color.White;
-            button24.Location = new Point(1143, 812);
-            button24.Margin = new Padding(5, 6, 5, 6);
+            button24.Location = new Point(1619, 1110);
+            button24.Margin = new Padding(7, 8, 7, 8);
             button24.Name = "button24";
-            button24.Size = new Size(141, 98);
+            button24.Size = new Size(200, 134);
             button24.TabIndex = 27;
             button24.Text = "button24";
             button24.UseVisualStyleBackColor = false;
@@ -445,10 +411,10 @@
             // 
             button25.BackColor = Color.FromArgb(37, 50, 167);
             button25.ForeColor = Color.White;
-            button25.Location = new Point(1006, 812);
-            button25.Margin = new Padding(5, 6, 5, 6);
+            button25.Location = new Point(1425, 1110);
+            button25.Margin = new Padding(7, 8, 7, 8);
             button25.Name = "button25";
-            button25.Size = new Size(141, 98);
+            button25.Size = new Size(200, 134);
             button25.TabIndex = 26;
             button25.Text = "button25";
             button25.UseVisualStyleBackColor = false;
@@ -457,10 +423,10 @@
             // 
             button26.BackColor = Color.FromArgb(37, 50, 167);
             button26.ForeColor = Color.White;
-            button26.Location = new Point(862, 812);
-            button26.Margin = new Padding(5, 6, 5, 6);
+            button26.Location = new Point(1221, 1110);
+            button26.Margin = new Padding(7, 8, 7, 8);
             button26.Name = "button26";
-            button26.Size = new Size(141, 98);
+            button26.Size = new Size(200, 134);
             button26.TabIndex = 25;
             button26.Text = "button26";
             button26.UseVisualStyleBackColor = false;
@@ -469,10 +435,10 @@
             // 
             button27.BackColor = Color.FromArgb(37, 50, 167);
             button27.ForeColor = Color.White;
-            button27.Location = new Point(1286, 908);
-            button27.Margin = new Padding(5, 6, 5, 6);
+            button27.Location = new Point(1822, 1241);
+            button27.Margin = new Padding(7, 8, 7, 8);
             button27.Name = "button27";
-            button27.Size = new Size(141, 98);
+            button27.Size = new Size(200, 134);
             button27.TabIndex = 32;
             button27.Text = "button27";
             button27.UseVisualStyleBackColor = false;
@@ -481,10 +447,10 @@
             // 
             button28.BackColor = Color.FromArgb(37, 50, 167);
             button28.ForeColor = Color.White;
-            button28.Location = new Point(1143, 908);
-            button28.Margin = new Padding(5, 6, 5, 6);
+            button28.Location = new Point(1619, 1241);
+            button28.Margin = new Padding(7, 8, 7, 8);
             button28.Name = "button28";
-            button28.Size = new Size(141, 98);
+            button28.Size = new Size(200, 134);
             button28.TabIndex = 31;
             button28.Text = "button28";
             button28.UseVisualStyleBackColor = false;
@@ -493,10 +459,10 @@
             // 
             button29.BackColor = Color.FromArgb(37, 50, 167);
             button29.ForeColor = Color.White;
-            button29.Location = new Point(1006, 908);
-            button29.Margin = new Padding(5, 6, 5, 6);
+            button29.Location = new Point(1425, 1241);
+            button29.Margin = new Padding(7, 8, 7, 8);
             button29.Name = "button29";
-            button29.Size = new Size(141, 98);
+            button29.Size = new Size(200, 134);
             button29.TabIndex = 30;
             button29.Text = "button29";
             button29.UseVisualStyleBackColor = false;
@@ -505,10 +471,10 @@
             // 
             button30.BackColor = Color.FromArgb(37, 50, 167);
             button30.ForeColor = Color.White;
-            button30.Location = new Point(862, 908);
-            button30.Margin = new Padding(5, 6, 5, 6);
+            button30.Location = new Point(1221, 1241);
+            button30.Margin = new Padding(7, 8, 7, 8);
             button30.Name = "button30";
-            button30.Size = new Size(141, 98);
+            button30.Size = new Size(200, 134);
             button30.TabIndex = 29;
             button30.Text = "button30";
             button30.UseVisualStyleBackColor = false;
@@ -516,39 +482,32 @@
             // pictureBox1
             // 
             pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
-            pictureBox1.Location = new Point(1459, 31);
+            pictureBox1.Location = new Point(2067, 42);
+            pictureBox1.Margin = new Padding(4);
             pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(97, 91);
+            pictureBox1.Size = new Size(137, 124);
             pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
             pictureBox1.TabIndex = 33;
             pictureBox1.TabStop = false;
-            // 
-            // label1
-            // 
-            label1.AutoSize = true;
-            label1.Font = new Font("Segoe UI", 16F);
-            label1.Location = new Point(11, 1017);
-            label1.Name = "label1";
-            label1.Size = new Size(256, 51);
-            label1.TabIndex = 34;
-            label1.Text = "Total Amount:";
             // 
             // TotalAmountlabel
             // 
             TotalAmountlabel.AutoSize = true;
             TotalAmountlabel.Font = new Font("Segoe UI", 16F);
-            TotalAmountlabel.Location = new Point(287, 1020);
+            TotalAmountlabel.Location = new Point(23, 1385);
+            TotalAmountlabel.Margin = new Padding(4, 0, 4, 0);
             TotalAmountlabel.Name = "TotalAmountlabel";
-            TotalAmountlabel.Size = new Size(0, 51);
+            TotalAmountlabel.Size = new Size(0, 72);
             TotalAmountlabel.TabIndex = 35;
             // 
             // btnPay
             // 
             btnPay.BackColor = Color.Lime;
             btnPay.Font = new Font("Segoe UI", 16F);
-            btnPay.Location = new Point(10, 1074);
+            btnPay.Location = new Point(14, 1468);
+            btnPay.Margin = new Padding(4);
             btnPay.Name = "btnPay";
-            btnPay.Size = new Size(763, 85);
+            btnPay.Size = new Size(1081, 116);
             btnPay.TabIndex = 36;
             btnPay.Text = "Pay";
             btnPay.UseVisualStyleBackColor = false;
@@ -561,9 +520,10 @@
             // 
             // btnClear
             // 
-            btnClear.Location = new Point(10, 71);
+            btnClear.Location = new Point(14, 97);
+            btnClear.Margin = new Padding(4);
             btnClear.Name = "btnClear";
-            btnClear.Size = new Size(83, 44);
+            btnClear.Size = new Size(118, 60);
             btnClear.TabIndex = 37;
             btnClear.Text = "CLR";
             btnClear.UseVisualStyleBackColor = true;
@@ -571,9 +531,10 @@
             // 
             // btnRemoveItem
             // 
-            btnRemoveItem.Location = new Point(106, 72);
+            btnRemoveItem.Location = new Point(150, 98);
+            btnRemoveItem.Margin = new Padding(4);
             btnRemoveItem.Name = "btnRemoveItem";
-            btnRemoveItem.Size = new Size(82, 43);
+            btnRemoveItem.Size = new Size(116, 59);
             btnRemoveItem.TabIndex = 38;
             btnRemoveItem.Text = "Delete";
             btnRemoveItem.UseVisualStyleBackColor = true;
@@ -581,14 +542,13 @@
             // 
             // Form1
             // 
-            AutoScaleDimensions = new SizeF(12F, 30F);
+            AutoScaleDimensions = new SizeF(17F, 41F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1591, 1196);
+            ClientSize = new Size(2254, 1635);
             Controls.Add(btnRemoveItem);
             Controls.Add(btnClear);
             Controls.Add(btnPay);
             Controls.Add(TotalAmountlabel);
-            Controls.Add(label1);
             Controls.Add(pictureBox1);
             Controls.Add(button27);
             Controls.Add(button28);
@@ -622,9 +582,10 @@
             Controls.Add(button1);
             Controls.Add(textBox1);
             Controls.Add(dataGridView1);
-            Margin = new Padding(5, 6, 5, 6);
+            Margin = new Padding(7, 8, 7, 8);
             Name = "Form1";
             Text = "Form1";
+            Load += Form1_Load;
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ResumeLayout(false);
@@ -633,10 +594,6 @@
 
         #endregion
         private DataGridView dataGridView1;
-        private DataGridViewTextBoxColumn ProductName;
-        private DataGridViewTextBoxColumn Quantity;
-        private DataGridViewTextBoxColumn UnitPrice;
-        private DataGridViewTextBoxColumn Total;
         private Microsoft.Data.Sqlite.SqliteCommand sqliteCommand1;
         private TextBox textBox1;
         private Button button1;
@@ -670,7 +627,6 @@
         private Button button29;
         private Button button30;
         private PictureBox pictureBox1;
-        private Label label1;
         private Label TotalAmountlabel;
         private Button btnPay;
         private ContextMenuStrip contextMenuStrip1;
