@@ -1,6 +1,6 @@
-﻿using PosLibrary.Data;
+﻿using System.Data;
+using PosLibrary.Data;
 using PosLibrary.Models;
-using System.Data;
 
 namespace MainDisplay
 {
@@ -19,19 +19,11 @@ namespace MainDisplay
         {
             try
             {
-                // Database файлын FULL PATH - таны pos.db файлын яг зам
-                string dbPath = @"C:\Users\bilguun\source\repos\PosSystem\PosSystem\bin\Debug\net8.0\pos.db"; // ЭНД ТАНЫ ФАЙЛЫН ЗАМ БИЧНЭ ҮҮ
+                string dbPath = @"C:\Users\bilguun\source\repos\PosSystem\PosSystem\bin\Debug\net8.0\pos.db"; 
 
-                // Эсвэл таны project folder дор байгаа бол:
-                // string dbPath = @"C:\Users\YourUsername\source\repos\PosSystem\bin\Debug\pos.db";
-
-                // Database холболт үүсгэх
                 _database = new Database(dbPath);
                 _productRepository = new ProductRepository(_database);
 
-                // Database initialize хийх (шинэ файл үүсгэх хэрэггүй бол энэ хэсгийг comment хий)
-                // var initializer = new DatabaseInitializer(dbPath);
-                // initializer.Initialize();
             }
             catch (Exception ex)
             {
@@ -40,24 +32,20 @@ namespace MainDisplay
         }
         private void SetupDataGridView()
         {
-            // DataTable үүсгэх сагсны өгөгдлөөр - таны design-ийн column нэрүүдтэй яг тохируулна
             _cartDataTable = new DataTable();
             _cartDataTable.Columns.Add("ProductId", typeof(int));
-            _cartDataTable.Columns.Add("Name", typeof(string));           // Header: Name
-            _cartDataTable.Columns.Add("Quantity", typeof(int));          // Header: Quantity  
-            _cartDataTable.Columns.Add("UnitPrice", typeof(decimal));     // Header: UnitPrice
-            _cartDataTable.Columns.Add("Total", typeof(decimal));         // Header: Total
+            _cartDataTable.Columns.Add("Name", typeof(string));           
+            _cartDataTable.Columns.Add("Quantity", typeof(int));          
+            _cartDataTable.Columns.Add("UnitPrice", typeof(decimal));     
+            _cartDataTable.Columns.Add("Total", typeof(decimal));        
 
-            // DataGridView тохируулах
             if (dataGridView1 != null)
             {
                 dataGridView1.DataSource = _cartDataTable;
 
-                // ProductId багана нуух
                 if (dataGridView1.Columns["ProductId"] != null)
                     dataGridView1.Columns["ProductId"].Visible = false;
 
-                // Баганы тохиргоо - таны design дээрх нэрүүдтэй яг тохирно
                 if (dataGridView1.Columns["Name"] != null)
                 {
                     dataGridView1.Columns["Name"].Width = 350;
@@ -67,30 +55,28 @@ namespace MainDisplay
                 if (dataGridView1.Columns["Quantity"] != null)
                 {
                     dataGridView1.Columns["Quantity"].Width = 250;
-                    dataGridView1.Columns["Quantity"].ReadOnly = false; // Edit хийж болно
+                    dataGridView1.Columns["Quantity"].ReadOnly = false; 
                 }
 
                 if (dataGridView1.Columns["UnitPrice"] != null)
                 {
                     dataGridView1.Columns["UnitPrice"].Width = 250;
-                    dataGridView1.Columns["UnitPrice"].DefaultCellStyle.Format = "N0"; // Тоо форматлах
+                    dataGridView1.Columns["UnitPrice"].DefaultCellStyle.Format = "N0"; 
                     dataGridView1.Columns["UnitPrice"].ReadOnly = true;
                 }
 
                 if (dataGridView1.Columns["Total"] != null)
                 {
                     dataGridView1.Columns["Total"].Width = 250;
-                    dataGridView1.Columns["Total"].DefaultCellStyle.Format = "N0"; // Тоо форматлах
+                    dataGridView1.Columns["Total"].DefaultCellStyle.Format = "N0"; 
                     dataGridView1.Columns["Total"].ReadOnly = true;
                 }
 
-                // DataGridView-ийн ерөнхий тохиргоо
                 dataGridView1.AllowUserToAddRows = false;
                 dataGridView1.AllowUserToDeleteRows = false;
                 dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
                 dataGridView1.MultiSelect = false;
 
-                // Event handler нэмэх
                 dataGridView1.CellValueChanged += DataGridView1_CellValueChanged;
                 dataGridView1.KeyDown += DataGridView1_KeyDown;
             }
@@ -116,17 +102,36 @@ namespace MainDisplay
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+        public void AddProductToCartByBarcode(string barcode)
+        {
+            try
+            {
+                var product = _productRepository.GetProductByBarcode(barcode);
+                if (product != null)
+                {
+                    AddProductToCart(product);
+                }
+                else
+                {
+                    MessageBox.Show($"'{barcode}' баркодтой бараа олдсонгүй!", "Алдаа",
+                        MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Барааг хайхад алдаа: {ex.Message}", "Алдаа",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
         private void AddProductToCart(Product product)
         {
             try
             {
-                // Сагсанд байгаа эсэхийг шалгах
                 var existingRow = _cartDataTable.AsEnumerable()
                     .FirstOrDefault(row => row.Field<int>("ProductId") == product.Id);
 
                 if (existingRow != null)
                 {
-                    // Байвал тоо хэмжээг нэмэх
                     int currentQuantity = existingRow.Field<int>("Quantity");
                     int newQuantity = currentQuantity + 1;
 
@@ -135,7 +140,6 @@ namespace MainDisplay
                 }
                 else
                 {
-                    // Шинээр нэмэх
                     var newRow = _cartDataTable.NewRow();
                     newRow["ProductId"] = product.Id;
                     newRow["Name"] = product.Name;
@@ -145,8 +149,6 @@ namespace MainDisplay
 
                     _cartDataTable.Rows.Add(newRow);
                 }
-
-                // Нийт дүн тооцоолох
                 UpdateTotalAmount();
             }
             catch (Exception ex)
@@ -162,9 +164,6 @@ namespace MainDisplay
             {
                 totalAmount += Convert.ToDecimal(row["Total"]);
             }
-
-            // Нийт дүнг form дээр харуулах (Label эсвэл TextBox байх ёстой)
-            // Жишээ: lblTotalAmount.Text = $"Нийт: ₮{totalAmount:N0}";
             TotalAmountlabel.Text = $"Нийт: ₮{totalAmount:N0}";
 
         }
@@ -182,7 +181,6 @@ namespace MainDisplay
                         int quantity = Convert.ToInt32(row["Quantity"]);
                         decimal unitPrice = Convert.ToDecimal(row["UnitPrice"]);
 
-                        // Тоо хэмжээ 0-ээс бага байвал устгах
                         if (quantity <= 0)
                         {
                             _cartDataTable.Rows.RemoveAt(e.RowIndex);
@@ -294,6 +292,16 @@ namespace MainDisplay
         private void Form1_Load(object sender, EventArgs e)
         {
 
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button31_Click(object sender, EventArgs e)
+        {
+            AddProductToCartByBarcode(searchBar.Text);
         }
     }
 }

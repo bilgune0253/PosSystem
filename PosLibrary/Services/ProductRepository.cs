@@ -12,7 +12,6 @@ namespace PosLibrary.Data
             _database = database;
         }
 
-        // Бүх барааг авах
         public List<Product> GetAllProducts()
         {
             var products = new List<Product>();
@@ -20,7 +19,6 @@ namespace PosLibrary.Data
             using (var connection = _database.GetConnection())
             {
                 connection.Open();
-                // Таны database-д байгаа багануудаар: Id, Barcode, Name, Price, CategoryId, Quantity
                 string sql = @"SELECT p.Id, p.Barcode, p.Name, p.Price, p.CategoryId, 
                               p.Quantity, c.Name AS CategoryName
                               FROM Products p
@@ -39,7 +37,7 @@ namespace PosLibrary.Data
                             Price = Convert.ToDecimal(reader["Price"]),
                             CategoryId = Convert.ToInt32(reader["CategoryId"]),
                             Quantity = Convert.ToInt32(reader["Quantity"]),
-                            IsActive = true, // Default утга (database-д байхгүй тул)
+                            IsActive = true, 
                             CategoryName = reader["CategoryName"]?.ToString() ?? ""
                         };
                         products.Add(product);
@@ -49,7 +47,6 @@ namespace PosLibrary.Data
             return products;
         }
 
-        // Нэрээр бараа хайх
         public Product? GetProductByName(string name)
         {
             using (var connection = _database.GetConnection())
@@ -86,7 +83,6 @@ namespace PosLibrary.Data
             return null;
         }
 
-        // ID-аар бараа авах
         public Product? GetProductById(int id)
         {
             using (var connection = _database.GetConnection())
@@ -123,7 +119,6 @@ namespace PosLibrary.Data
             return null;
         }
 
-        // Барааны тоо хэмжээ шинэчлэх
         public bool UpdateProductQuantity(int productId, int newQuantity)
         {
             try
@@ -150,7 +145,6 @@ namespace PosLibrary.Data
             }
         }
 
-        // Категорийн дагуу бараа авах
         public List<Product> GetProductsByCategory(int categoryId)
         {
             var products = new List<Product>();
@@ -190,7 +184,6 @@ namespace PosLibrary.Data
             return products;
         }
 
-        // Barcod-оор бараа хайх (нэмэлт функц)
         public Product? GetProductByBarcode(string barcode)
         {
             using (var connection = _database.GetConnection())

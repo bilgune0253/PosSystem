@@ -32,21 +32,19 @@ namespace PosForm
             var user = userService.Login(username, password);
             if (user != null)
             {
-                // Role-г шалгах
-                if (user.Username == "manager")
+                if (user.Username == "Bilguun")
                 {
                     MessageBox.Show("Амжилттай нэвтэрлээ! (Manager)");
 
-                    var mainForm = new ManagerDisplay.Form1();
-                    mainForm.Show();
+                    var managerForm = new ManagerDisplay.Form1();
+                    managerForm.Show();
                     this.Hide();
                 }
                 else if (user.Role.ToLower() == "seller")
                 {
                     MessageBox.Show("Амжилттай нэвтэрлээ! (Seller)");
 
-                    // Seller-д зориулсан өөр form байх бол энд нээх
-                    var mainForm = new MainDisplay.Form1();  // эсвэл SellerForm
+                    var mainForm = new MainDisplay.Form1();
                     mainForm.Show();
                     this.Hide();
                 }

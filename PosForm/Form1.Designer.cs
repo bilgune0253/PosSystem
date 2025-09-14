@@ -173,7 +173,7 @@
             // 
             AutoScaleDimensions = new SizeF(12F, 30F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1599, 1054);
+            ClientSize = new Size(1584, 896);
             Controls.Add(txtPassword);
             Controls.Add(btnSignUp);
             Controls.Add(btnLogin);
@@ -184,6 +184,7 @@
             Controls.Add(label1);
             Controls.Add(panel1);
             Margin = new Padding(5, 6, 5, 6);
+            MaximizeBox = false;
             Name = "Form1";
             Text = "Form1";
             panel1.ResumeLayout(false);
